@@ -1,0 +1,30 @@
+﻿<UserControl x:Class="lab_6_9.lab_9_Controls.UserControlButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:lab_6_9.lab_9_Controls"
+             mc:Ignorable="d" >
+    <UniformGrid>
+        <Button x:Name="closeButton" Content="{DynamicResource closeButtonBookDtls}" 
+                Height="25" Width="200"
+                FontSize="{StaticResource Big}"
+                Style="{DynamicResource BaseButton}" Click="closeButton_Click">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="70"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                Background="{TemplateBinding Background}"
+                Height="{TemplateBinding Height}"
+                Width="{TemplateBinding Width}" >
+                        <ContentControl Margin="{TemplateBinding Padding}"
+                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                        Content="{TemplateBinding Content}" />
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+    </UniformGrid>
+</UserControl>

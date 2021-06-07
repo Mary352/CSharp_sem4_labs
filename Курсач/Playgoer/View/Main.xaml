@@ -1,0 +1,141 @@
+﻿<Window x:Class="Playgoer.View.Main"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Playgoer.View"
+        mc:Ignorable="d"
+        Title="Playgoer" Height="600" Width="1270" WindowStartupLocation="CenterScreen" Icon="appIcon2.png">
+    <Grid Background="{StaticResource LightBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.15*"></RowDefinition>
+            <RowDefinition Height="0.15*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <WrapPanel Grid.Row="0" Margin="0">
+            <TextBlock Margin="10" TextAlignment="Center" TextWrapping="Wrap" FontSize="{StaticResource H1}" Style="{StaticResource BaseText}" Text="Спектакли в"/>
+            <ComboBox x:Name="comboCity" SelectionChanged="comboCity_SelectionChanged" Style="{StaticResource BaseTextComboBox}" FontSize="{StaticResource H1}" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <ComboBoxItem IsSelected="True" Content="Город" FontSize="{StaticResource H1}" Style="{StaticResource BaseTextComboBoxItem}"></ComboBoxItem>
+                <ComboBoxItem Content="Минск" FontSize="{StaticResource H1}" Style="{StaticResource BaseTextComboBoxItem}"></ComboBoxItem>
+                <ComboBoxItem Content="Брест" FontSize="{StaticResource H1}" Style="{StaticResource BaseTextComboBoxItem}"></ComboBoxItem>
+                <ComboBoxItem Content="Витебск" FontSize="{StaticResource H1}" Style="{StaticResource BaseTextComboBoxItem}"></ComboBoxItem>
+                <ComboBoxItem Content="Гомель" FontSize="{StaticResource H1}" Style="{StaticResource BaseTextComboBoxItem}"></ComboBoxItem>
+                <ComboBoxItem Content="Гродно" FontSize="{StaticResource H1}" Style="{StaticResource BaseTextComboBoxItem}"></ComboBoxItem>
+                <ComboBoxItem Content="Могилёв" FontSize="{StaticResource H1}" Style="{StaticResource BaseTextComboBoxItem}"></ComboBoxItem>
+            </ComboBox>
+        </WrapPanel>
+        <WrapPanel Grid.Row="1"  VerticalAlignment="Center">
+            <Button  x:Name="btnAllPrfs"
+                        MinWidth="180"
+                        Margin="30, 10, 0, 10"
+                     HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
+                        Content="Показать все доступные спектакли"
+                        Style="{StaticResource BaseButton}" Click="btnAllPrfs_Click" />
+            <Button  x:Name="btnSortThtrs"
+                        MinWidth="170"
+                        Margin="30, 10, 10, 10"
+                     HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
+                        Content="Сортировка театров"
+                        Style="{StaticResource BaseButton}" Click="btnSortThtrs_Click" />
+            <Button  x:Name="btnSortGenrePrfs"
+                        MinWidth="170"
+                        Margin="30, 10, 10, 10"
+                     HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
+                        Content="Сортировка по жанрам"
+                        Style="{StaticResource BaseButton}" Click="btnSortGenrePrfs_Click"  />
+            <Button  x:Name="btnUserPage"
+                        MinWidth="180"
+                        Margin="270, 10, 40, 10"
+                     HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
+                        Content="Моя страница"
+                        Style="{StaticResource BaseButton}" Click="btnUserPage_Click" />
+
+        </WrapPanel>
+
+        <Grid  Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.4*"></ColumnDefinition>
+                <ColumnDefinition  Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="0.15*"></RowDefinition>
+                <RowDefinition Height="0.15*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <DataGrid AutoGenerateColumns="False" x:Name="thrsGrid"  FontFamily="Consolas" FontSize="16" Margin="10,10,0,50" Grid.Column="0" Grid.Row="0">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Path=TName}" Header="Театры" Width="348"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            
+            <Button Grid.Column="0" Grid.Row="1"
+                    x:Name="btnSelectedTh"
+                        MinWidth="180"
+                        Margin="10"
+                        HorizontalAlignment="Center"
+                        Content="Выбрать спектакли театра"
+                        Style="{StaticResource BaseButton}" Click="btnSelectedTh_Click" />
+
+            <Button Grid.Column="0" Grid.Row="2"
+                    x:Name="btnThInfo"
+                        MinWidth="180"
+                        Margin="10"                    
+                        HorizontalAlignment="Center"
+                        Content="Подробнее о театре"
+                        Style="{StaticResource BaseButton}" Click="btnThInfo_Click" />
+
+            <DataGrid AutoGenerateColumns="False" x:Name="prfsGrid" Margin="10,10,10,50" FontFamily="Consolas" 
+                          FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                          Grid.Column="1" Grid.Row="0">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding PName}" Header="Спектакль" Width="383"/>
+                    <DataGridTextColumn Binding="{Binding Genre}" Header="Жанр" Width="195"/>
+                    <DataGridTextColumn Binding="{Binding Date_time}" Header="Дата и время" Width="305"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            
+            <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
+                <Button  x:Name="btnTicketPay"
+                        MinWidth="180"
+                        Margin="290, 10, 10, 10"
+                        HorizontalContentAlignment="Center"
+                        Content="Купить билет"
+                        Style="{StaticResource BaseButton}" Click="btnTicketPay_Click" />
+
+                <Button  x:Name="btnAddThtr"
+                        MinWidth="180"
+                        Margin="47, 10, 10, 10"
+                        Content="Добавить театр"
+                        Style="{StaticResource BaseButton}" Click="btnAddThtr_Click"/>
+                <Button  x:Name="btnDelTh"
+                        MinWidth="180"
+                        Margin="0, 10, 20, 10"
+                        Content="Удалить театр"
+                        Style="{StaticResource BaseButton}" Click="btnDelTh_Click" />
+
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal">
+                <Button Grid.Column="1" Grid.Row="2" x:Name="btnPerfInfo"
+                        MinWidth="180"
+                        Margin="283, 10, 10, 10"
+                        Content="Подробнее о спектакле"
+                        Style="{StaticResource BaseButton}" Click="btnPerfInfo_Click" />
+
+                <Button  x:Name="btnAddPerf"
+                        MinWidth="180"
+                        Margin="40, 10, 10, 10"
+                        Content="Добавить спектакль"
+                        Style="{StaticResource BaseButton}" Click="btnAddPerf_Click" />
+                <Button  x:Name="btnDelPerf"
+                        MinWidth="180"
+                        Margin="0, 10, 20, 10"
+                        Content="Удалить спектакль"
+                        Style="{StaticResource BaseButton}" Click="btnDelPerf_Click" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

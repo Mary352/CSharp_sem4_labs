@@ -1,0 +1,52 @@
+﻿<Window x:Class="Playgoer.View.LogIn"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Playgoer.View"
+        mc:Ignorable="d"
+        Title="Playgoer" Height="675" Width="800" WindowStartupLocation="CenterScreen" Icon="appIcon2.png">
+    <Window.Background>
+        <ImageBrush Opacity="0.7" ImageSource="mainWnd.jpg"/>
+    </Window.Background>
+    <Grid ShowGridLines="False">
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        
+        <PasswordBox Name="psw" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3" Style="{StaticResource LogPassBox}">
+        </PasswordBox>
+        <TextBlock Grid.Column="1" Grid.Row="2" Style="{StaticResource LogPassTxt}" >
+            Пароль:
+        </TextBlock>
+        <TextBox Name="lgn" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Style="{StaticResource LogPassBox}">
+        </TextBox>
+        <TextBlock Grid.Column="1" Grid.Row="1" Style="{StaticResource LogPassTxt}">
+            Логин:
+        </TextBlock>
+        <TextBlock Grid.Column="1" Grid.Row="3" Style="{StaticResource LogPassTxt}">
+            Ник:
+        </TextBlock>
+        <TextBox Name="nicknm" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="3" Style="{StaticResource LogPassBox}"></TextBox>
+        <TextBlock Grid.Column="1" Grid.Row="4" Style="{StaticResource LogPassTxt}">
+            E-mail:
+        </TextBlock>
+        <TextBox Name="email" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="3" Style="{StaticResource LogPassBox}"></TextBox>
+        <Button Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="3" x:Name="buttonLogUp" 
+                Content="Зарегистрироваться" Height="50" MinWidth="200"  HorizontalAlignment="Center" 
+                Style="{StaticResource BaseButton}" VerticalAlignment="Center" Click="buttonLogUp_Click" />
+    </Grid>
+</Window>

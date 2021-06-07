@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31321.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DB_3-1_ADO_SaveFromDataGrid", "DB_3-1_ADO_SaveFromDataGrid\DB_3-1_ADO_SaveFromDataGrid.csproj", "{DFA7D6A5-8DDD-4177-A630-CB6F00D96B66}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DFA7D6A5-8DDD-4177-A630-CB6F00D96B66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFA7D6A5-8DDD-4177-A630-CB6F00D96B66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFA7D6A5-8DDD-4177-A630-CB6F00D96B66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFA7D6A5-8DDD-4177-A630-CB6F00D96B66}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {17A63937-9BED-4E39-9DD7-B9329B01C308}
+	EndGlobalSection
+EndGlobal

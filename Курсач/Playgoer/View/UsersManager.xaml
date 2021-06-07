@@ -1,0 +1,45 @@
+﻿<Window x:Class="Playgoer.View.UsersManager"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Playgoer.View"
+        mc:Ignorable="d"
+        Title="Playgoer" Height="450" Width="800" WindowStartupLocation="CenterScreen" Icon="appIcon2.png">
+    <Grid Background="{StaticResource LightBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.13*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="0.15*"></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <TextBlock Grid.Row="0"
+                Margin="0, 10, 0, 0" FontSize="{StaticResource H1}"  Style="{StaticResource BaseText}"
+                TextAlignment="Center" Text="Пользователи" TextWrapping="Wrap" />
+
+        <DataGrid AutoGenerateColumns="False" x:Name="usrsGrid" Margin="50,0,50,40" FontFamily="Consolas" FontSize="16" Grid.Row="1">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Nickname}" Header="Ник" Width="225"/>
+                <DataGridTextColumn Binding="{Binding Login}" Header="Логин" Width="225"/>
+                <DataGridTextColumn Binding="{Binding Email}" Header="E-mail" Width="240"/>
+            </DataGrid.Columns>
+        </DataGrid>
+       
+        <UniformGrid Grid.Row="2" Columns="2">
+            <Button x:Name="btnAddUser"
+                    MinWidth="200"
+                    Margin="10"
+                    HorizontalAlignment="Center"
+                    Command="{Binding Save}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                    Content="Добавить пользователя"
+                    Style="{StaticResource BaseButton}" Click="btnAddUser_Click" />
+            <Button x:Name="btnDelUser"
+                    MinWidth="200"
+                    Margin="10"
+                    HorizontalAlignment="Center"                    
+                    Content="Удалить пользователя"
+                    Style="{StaticResource BaseButton}" Click="btnDelUser_Click" />
+        </UniformGrid>
+    </Grid>
+</Window>

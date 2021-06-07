@@ -1,0 +1,234 @@
+﻿<Window xmlns:Controls="clr-namespace:lab_6_9.Controls"  x:Class="lab_6_9.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:lab_6_9"
+        xmlns:uc="clr-namespace:lab_6_9.Controls"
+        mc:Ignorable="d"
+        Title="MainWindow" WindowStartupLocation="CenterScreen" 
+        Height="450" Width="1000"
+        Icon = "/Images/Icons/EBook.png">
+    
+    <Window.CommandBindings>
+        <CommandBinding Command="local:WindowCommands.Exit" Executed="Exit_Executed"/>
+        <CommandBinding Command="local:WindowCommands.Undo" Executed="Undo_Executed"/>
+        <CommandBinding Command="local:WindowCommands.Redo" Executed="Redo_Executed"/>
+        <CommandBinding Command="local:WindowCommands.OpenAddBookWindow" Executed="OpenAddBookWindow_Executed"/>
+        <CommandBinding Command="local:WindowCommands.OpenBookDetailsWindow" Executed="OpenBookDetailsWindow_Executed"/>
+        <CommandBinding Command="local:WindowCommands.SaveList" Executed="SaveList_Executed"/>
+        <CommandBinding Command="local:WindowCommands.DeleteItem" Executed="DeleteItem_Executed"/>
+        <CommandBinding Command="local:WindowCommands.EditItem" Executed="EditItem_Executed"/>
+        <CommandBinding Command="local:WindowCommands.SearchItem" Executed="SearchItem_Executed"/>
+        <CommandBinding Command="local:WindowCommands.FilterSearch" Executed="FilterSearch_Executed"/>
+    </Window.CommandBindings>
+    <Window.Resources>
+        <Cursor x:Key="quillCursor">/Settings/quill.cur</Cursor>
+        <Style x:Key="BaseTextBacklight" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontFamily" Value="{StaticResource BaseFont}" />
+            <Setter Property="FontSize" Value="{StaticResource Regular}" />
+            <Setter Property="FontWeight" Value="Light" />
+            <Setter Property="Foreground" Value="Black" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ElementName=backlightChBox, Path=IsChecked}"
+                        Value="True" >
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+
+        </Style>
+    </Window.Resources>
+    <Grid ShowGridLines="True" Cursor="{DynamicResource quillCursor}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="8*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <Menu Height="25" VerticalAlignment="Top">
+                <MenuItem Header="{DynamicResource fileMenu}">
+                    <MenuItem Header="{DynamicResource undoMenu}" Command="local:WindowCommands.Undo"></MenuItem>
+                    <MenuItem Header="{DynamicResource redoMenu}" Command="local:WindowCommands.Redo"></MenuItem>
+                    <MenuItem Header="{DynamicResource save}" Command="local:WindowCommands.SaveList"></MenuItem>
+                    <Separator />
+                    <MenuItem Header="{DynamicResource exitMenu}" Command="local:WindowCommands.Exit"></MenuItem>
+                </MenuItem>
+                <MenuItem Header="{DynamicResource editMenu}">
+                    <MenuItem Header="{DynamicResource add}" Command="local:WindowCommands.OpenAddBookWindow"></MenuItem>
+                    <MenuItem Header="{DynamicResource change}" Command="local:WindowCommands.EditItem"></MenuItem>
+                    <MenuItem Header="{DynamicResource delete}" Command="local:WindowCommands.DeleteItem"></MenuItem>
+                </MenuItem>
+                <MenuItem Header="{DynamicResource details}" Command="local:WindowCommands.OpenBookDetailsWindow"></MenuItem>
+                <MenuItem x:Name="menuLanguage" Header="{DynamicResource lang}" >
+                </MenuItem>
+                <MenuItem Header="{DynamicResource ThemeMenu}">
+                    <MenuItem Name="GreenThemeMenuItem" Header="{DynamicResource GreenThemeMenu}" Click="GreenThemeMenuItem_Click"></MenuItem>
+                    <MenuItem Name="OptimisticThemeMenuItem" Header="{DynamicResource OptimisticThemeMenu}" Click="OptimisticMenuItem_Click"></MenuItem>
+                </MenuItem>
+
+            </Menu>
+            <ToolBar Height="25" VerticalAlignment="Top">
+                <Button Command="local:WindowCommands.OpenAddBookWindow">
+                    <Image Source="/Images/Icons/add.png" />
+                </Button>
+                <Separator />
+                <Button Command="local:WindowCommands.DeleteItem">
+                    <Image Source="/Images/Icons/delete2.jpg" />
+                </Button>
+                <Separator />
+                <Button Command="local:WindowCommands.EditItem">
+                    <Image Source="/Images/Icons/change.jpg" />
+                </Button>
+                <Separator />
+                <Button Command="local:WindowCommands.SaveList">
+                    <Image Source="/Images/Icons/save.png" />
+                </Button>
+                <Separator />
+                <Button Command="local:WindowCommands.OpenBookDetailsWindow">
+                    <Image Source="/Images/Icons/moreInfo.jpg" />
+                </Button>
+                <Separator />
+                <uc:UserControlSwitcher x:Name="sw" NextClick="nextButton_Click"
+                                              PreviousClick="previousButton_Click" />
+            </ToolBar>
+        </StackPanel>
+            <Grid ShowGridLines="True" Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+            <Grid ShowGridLines="True" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="4*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <ListBox Grid.Row="0" Grid.Column="0" x:Name="eBooksList">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="5" Orientation="Horizontal">
+                                <Image Width="100" Height="100" Source="{Binding Path=ImagePath}" />
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock FontSize="16" Text="{Binding Path=Name}" HorizontalAlignment="Center" />
+                                    <TextBlock FontSize="16" Text="{Binding Path=Color}" HorizontalAlignment="Left" />
+                                    <TextBlock FontSize="16" Text="{Binding Path=Price}" HorizontalAlignment="Left" />
+                                </StackPanel>
+                            </StackPanel>
+                        </DataTemplate>
+
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+                <UniformGrid PreviewMouseDown="Control_MouseDown" Grid.Row="1" Grid.Column="0" Rows="1">
+                    <Button Content="{DynamicResource add}" x:Name="addButton" Style="{DynamicResource BaseButton}" Margin="3, 18" Command="local:WindowCommands.OpenAddBookWindow"/>
+                    <Button PreviewMouseDown="Control_MouseDown" Content="{DynamicResource delete}" x:Name="delButton" Style="{DynamicResource BaseButton}"  Margin="3, 18" Command="local:WindowCommands.DeleteItem"/>
+                    <Button Content="{DynamicResource change}" x:Name="editButton" Style="{DynamicResource BaseButton}"  Margin="3, 18" Command="local:WindowCommands.EditItem"/>
+                    <Button Content="{DynamicResource save}" x:Name="saveButton" Style="{DynamicResource BaseButton}"  Margin="3, 18" Command="local:WindowCommands.SaveList"/>
+                    <Button Content="{DynamicResource details}" x:Name="detailsButton" Style="{DynamicResource BaseButton}"  Margin="3, 18" Command="local:WindowCommands.OpenBookDetailsWindow"/>
+                </UniformGrid>
+            </Grid>
+
+            <Grid Grid.Column="1" Background="{DynamicResource DarkBrush}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3.5*"></RowDefinition>
+                    <RowDefinition Height="2.8*"></RowDefinition>
+                    <RowDefinition Height="1.8*"></RowDefinition>
+                    <RowDefinition Height="3*"></RowDefinition>
+                    <RowDefinition Height="3*"></RowDefinition>
+                    <RowDefinition Height="4*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <WrapPanel Grid.Row="0">
+                    <TextBox x:Name="searchBar"
+                             MinWidth="250"
+                                    Margin="5"
+                                    VerticalAlignment="Center"
+                                    Style="{DynamicResource BaseTextBox}"
+                                    TextWrapping="Wrap" />
+                    <Button x:Name="searchButton"
+                            MinWidth="50"
+                            Command="local:WindowCommands.SearchItem"
+                            Margin="5"
+                            Style="{DynamicResource BaseButtonSearch}"
+                                    VerticalAlignment="Center"
+                                     Content="{DynamicResource search}"/>
+                </WrapPanel>
+                <WrapPanel Grid.Row="1">
+                    <TextBlock x:Name="pNameBox4"
+                             MinWidth="310"
+                                    Margin="5"
+                                    VerticalAlignment="Center"
+                                    Style="{DynamicResource BaseText}"
+                                    TextWrapping="Wrap" 
+                               Text="{DynamicResource pricesFromTo}"/>
+                    <TextBox x:Name="priceFromBox"
+                             MinWidth="150"
+                                    Margin="5"
+                                    VerticalAlignment="Center"
+                                    Style="{DynamicResource BaseTextBox}"
+                                    TextWrapping="Wrap" />
+                    <TextBox x:Name="priceToBox"
+                             MinWidth="150"
+                                    Margin="5"
+                                    VerticalAlignment="Center"
+                                    Style="{DynamicResource BaseTextBox}"
+                                    TextWrapping="Wrap" />
+                </WrapPanel>
+                <WrapPanel Grid.Row="2">
+                    <TextBlock
+                             MinWidth="20"
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Style="{DynamicResource BaseText}"
+                                    TextWrapping="Wrap" 
+                               Text="{DynamicResource backlightBlock}"/>
+                    <CheckBox x:Name="backlightChBox" IsThreeState="True" VerticalAlignment="Center" HorizontalAlignment="Center"></CheckBox>
+                    <TextBlock Visibility="Collapsed"
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Style="{DynamicResource BaseText2}"
+                                    />
+                </WrapPanel>
+                <WrapPanel Grid.Row="3">
+                    <TextBlock
+                                    Margin="10,5"
+                                    VerticalAlignment="Center"
+                                    Style="{DynamicResource BaseText}"
+                                    Text="{DynamicResource screenResolBlock}" />
+
+                    <ComboBox x:Name="comboScreenResol" MinWidth="250" Style="{DynamicResource BaseTextComboBox}" Margin="10,3" VerticalAlignment="Center">
+                        <ComboBoxItem IsSelected="True" Content="-----" Style="{DynamicResource BaseTextComboBoxItem}"></ComboBoxItem>
+                        <ComboBoxItem Content="600x800" Style="{DynamicResource BaseTextComboBoxItem}"></ComboBoxItem>
+                        <ComboBoxItem Content="758x1024"  Style="{DynamicResource BaseTextComboBoxItem}"></ComboBoxItem>
+                        <ComboBoxItem Content="800x1280" Style="{DynamicResource BaseTextComboBoxItem}"></ComboBoxItem>
+                        <ComboBoxItem Content="1080x1440" Style="{DynamicResource BaseTextComboBoxItem}"></ComboBoxItem>
+                    </ComboBox>
+                </WrapPanel>
+                <WrapPanel Grid.Row="4">
+                    <TextBlock
+                                    Margin="10, 5"
+                                    VerticalAlignment="Center"
+                                    Style="{DynamicResource BaseText}"
+                                    Text="{DynamicResource screenTechBlock}" />
+
+                    <ComboBox x:Name="comboScreenTech" MinWidth="250" Style="{DynamicResource BaseTextComboBox}" Margin="10,3" VerticalAlignment="Center">
+                        <ComboBoxItem IsSelected="True" Content="-----" Style="{DynamicResource BaseTextComboBoxItem}"></ComboBoxItem>
+                        <ComboBoxItem Content="E-Ink" Style="{DynamicResource BaseTextComboBoxItem}"></ComboBoxItem>
+                        <ComboBoxItem Content="E-Ink VizPlex"  Style="{DynamicResource BaseTextComboBoxItem}"></ComboBoxItem>
+                        <ComboBoxItem Content="E-Ink Pearl" Style="{DynamicResource BaseTextComboBoxItem}"></ComboBoxItem>
+                        <ComboBoxItem Content="E-Ink Pearl HD" Style="{DynamicResource BaseTextComboBoxItem}"></ComboBoxItem>
+                        <ComboBoxItem Content="E-Ink Carta" Style="{DynamicResource BaseTextComboBoxItem}"></ComboBoxItem>
+                        <ComboBoxItem Content="E-Ink Carta HD" Style="{DynamicResource BaseTextComboBoxItem}"></ComboBoxItem>
+                        <ComboBoxItem Content="E-Ink Carta Plus" Style="{DynamicResource BaseTextComboBoxItem}"></ComboBoxItem>
+                        <ComboBoxItem Content="E-Ink Mobius" Style="{DynamicResource BaseTextComboBoxItem}"></ComboBoxItem>
+                        <ComboBoxItem Content="E-Ink Mobius Carta" Style="{DynamicResource BaseTextComboBoxItem}"></ComboBoxItem>
+                        <ComboBoxItem Content="E-Ink Kaleido" Style="{DynamicResource BaseTextComboBoxItem}"></ComboBoxItem>
+                        <ComboBoxItem Content="E-Ink New Kaleido" Style="{DynamicResource BaseTextComboBoxItem}"></ComboBoxItem>
+                    </ComboBox>
+                </WrapPanel>
+                <Button Grid.Row="5" Content="{DynamicResource filterSearch}" Command="local:WindowCommands.FilterSearch" Name="filterButton" Style="{DynamicResource BaseButton}"  Margin="20"/>
+
+            </Grid>
+            
+        </Grid>
+
+       
+    </Grid>
+</Window>

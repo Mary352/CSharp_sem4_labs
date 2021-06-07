@@ -1,0 +1,78 @@
+﻿<Window x:Class="Playgoer.View.TheaterInfo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Playgoer.View"
+        mc:Ignorable="d"
+        Title="Playgoer" Height="270" Width="500" WindowStartupLocation="CenterScreen" Icon="appIcon2.png">
+    <Grid Background="{StaticResource LightBrush}">
+        
+        <StackPanel Name="root" Margin="0">
+            <TextBlock x:Name="thtrnameBlock" Margin="10" FontSize="{StaticResource H1}" 
+                       Text="" Style="{StaticResource BaseText}" TextAlignment="Center" TextWrapping="Wrap" />
+
+            <Grid>
+                <Border CornerRadius="5">
+                    <Border.OpacityMask>
+                        <VisualBrush>
+                            <VisualBrush.Visual>
+                                <Border
+                                        Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Border}}"
+                                        Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Border}}"
+                                        Background="Black"
+                                        CornerRadius="{Binding CornerRadius, RelativeSource={RelativeSource AncestorType=Border}}"
+                                        SnapsToDevicePixels="True" />
+                            </VisualBrush.Visual>
+                        </VisualBrush>
+                    </Border.OpacityMask>
+
+                    <StackPanel HorizontalAlignment="Center" Width="370">
+                        <TextBlock ></TextBlock>
+                        <UniformGrid Background="{StaticResource DarkBrush}" Columns="2">
+                            <TextBlock
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseText}"
+                                    Text="Город: " />
+
+                            <TextBlock x:Name="tcityBlock"
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseText}"
+                                    Text="" />
+                        </UniformGrid>
+
+                        <UniformGrid Background="{StaticResource MediumBrush}" Columns="2">
+                            <TextBlock
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseText}"
+                                    Text="Адрес: " />
+
+                            <TextBlock x:Name="tadressBlock"
+                                       TextWrapping="Wrap"
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseText}"
+                                    Text="" />
+                        </UniformGrid>
+                        <UniformGrid Background="{StaticResource DarkBrush}" Columns="2">
+                            <TextBlock
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseText}"
+                                    Text="Телефон: " />
+
+                            <TextBlock x:Name="tphoneBlock"
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseText}"
+                                    Text="" />
+                        </UniformGrid>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Window>

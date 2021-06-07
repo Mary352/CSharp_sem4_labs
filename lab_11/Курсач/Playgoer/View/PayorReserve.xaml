@@ -1,0 +1,403 @@
+﻿<Window x:Class="Playgoer.View.PayorReserve"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Playgoer.View"
+        mc:Ignorable="d"
+        Title="Playgoer" Height="815" Width="900" WindowStartupLocation="CenterScreen" Icon="appIcon2.png">
+    <Grid Background="{StaticResource LightBrush}">       
+        <StackPanel Name="root" Margin="33,0">
+            <TextBlock
+                    Margin="10"
+                    FontSize="{StaticResource H1}"
+                    Style="{StaticResource BaseText}"
+                    Text="Выбор мест"
+                    TextAlignment="Center"
+                    TextWrapping="Wrap" />
+
+            <Grid>
+                <Border CornerRadius="5">
+                    <Border.OpacityMask>
+                        <VisualBrush>
+                            <VisualBrush.Visual>
+                                <Border
+                                        Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Border}}"
+                                        Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Border}}"
+                                        Background="Black"
+                                        CornerRadius="{Binding CornerRadius, RelativeSource={RelativeSource AncestorType=Border}}"
+                                        SnapsToDevicePixels="True" />
+                            </VisualBrush.Visual>
+                        </VisualBrush>
+                    </Border.OpacityMask>
+
+                    <StackPanel HorizontalAlignment="Center">
+                        <UniformGrid Background="{StaticResource DarkBrush}" Columns="2">
+                            <TextBlock
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseText}"
+                                    Text="Спектакль: " />
+
+                            <TextBlock x:Name="prfBlock"
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseText}"
+                                    Text="" />
+                        </UniformGrid>
+
+                        <UniformGrid Background="{StaticResource MediumBrush}" Columns="2">
+                            <TextBlock
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseText}"
+                                    Text="Дата: " />
+
+                            <TextBlock x:Name="dateBlock"
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseText}"
+                                    Text="" />
+                        </UniformGrid>
+
+                        <UniformGrid Background="{StaticResource DarkBrush}" Columns="2">
+                            <TextBlock
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseText}"
+                                    Text="Время: " />
+
+                            <TextBlock x:Name="timeBlock"
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseText}"
+                                    Text="" />
+                        </UniformGrid>
+
+                        <UniformGrid Background="{StaticResource MediumBrush}" Columns="2">
+                            <TextBlock
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseText}"
+                                    Text="Театр: " />
+
+                            <TextBlock x:Name="thtrBlock"
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseText}"
+                                    Text="" />
+                        </UniformGrid>
+                    </StackPanel>
+                </Border>
+
+            </Grid>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.7*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="1" Grid.Row="0"
+                    Margin="10"
+                    FontSize="{StaticResource H1}"
+                    Style="{StaticResource BaseText}"
+                    Text="Свободные места"
+                    TextAlignment="Center"
+                    TextWrapping="Wrap" />
+                <DataGrid Grid.Column="1" Grid.Row="1" AutoGenerateColumns="False" x:Name="seatsGrid" MaxHeight="340"  FontFamily="Consolas" FontSize="16" Margin="10,10,0,50" >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Path=Sector}" Header="Сектор" Width="86"/>
+                        <DataGridTextColumn Binding="{Binding Path=Row}" Header="Ряд" Width="61"/>
+                        <DataGridTextColumn Binding="{Binding Path=SeatNum}" Header="Место" Width="61"/>
+                        <DataGridTextColumn Binding="{Binding Path=Price}" Header="Цена" Width="86"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <StackPanel Grid.Column="0" Grid.Row="1">
+                    <StackPanel Margin="0, 10, 0, 0" Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Center">
+                        <TextBlock Style="{StaticResource BaseText}" MinWidth="20" MinHeight="20" Margin="25,0,10,0" Text="1"/>
+                        <TextBlock Style="{StaticResource BaseText}" MinWidth="20" MinHeight="20" Margin="0,0,10,0" Text="2"/>
+                        <TextBlock Style="{StaticResource BaseText}" MinWidth="20" MinHeight="20" Margin="0,0,10,0" Text="3"/>
+                        <TextBlock Style="{StaticResource BaseText}" MinWidth="20" MinHeight="20" Margin="0,0,10,0" Text="4"/>
+                        <TextBlock Style="{StaticResource BaseText}" MinWidth="20" MinHeight="20" Margin="0,0,10,0" Text="5"/>
+                        <TextBlock Style="{StaticResource BaseText}" MinWidth="20" MinHeight="20" Margin="0,0,10,0" Text="6"/>
+                        <TextBlock Style="{StaticResource BaseText}" MinWidth="20" MinHeight="20" Margin="0,0,10,0" Text="7"/>
+                        <TextBlock Style="{StaticResource BaseText}" MinWidth="20" MinHeight="20" Margin="0,0,10,0" Text="8"/>
+                        <TextBlock Style="{StaticResource BaseText}" MinWidth="20" MinHeight="20" Margin="0,0,10,0" Text="9"/>
+                        <TextBlock Style="{StaticResource BaseText}" MinWidth="20" MinHeight="20" Margin="0,0,10,0" Text="10"/>
+                        <TextBlock Style="{StaticResource BaseText}" MinWidth="20" MinHeight="20" Margin="0,0,10,0" Text="11"/>
+                        <TextBlock Style="{StaticResource BaseText}" MinWidth="20" MinHeight="20" Margin="0,0,10,0" Text="12"/>
+                        <TextBlock Style="{StaticResource BaseText}" MinWidth="20" MinHeight="20" Margin="0,0,10,0" Text="13"/>
+                        <TextBlock Style="{StaticResource BaseText}" MinWidth="20" MinHeight="20" Margin="0,0,10,0" Text="14"/>
+                        <TextBlock Style="{StaticResource BaseText}" MinWidth="20" MinHeight="20" Margin="0,0,10,0" Text="15"/>
+                        <TextBlock Style="{StaticResource BaseText}" MinWidth="20" MinHeight="20" Margin="0,0,10,0" Text="16"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Center">
+                        <TextBlock Style="{StaticResource BaseText}" Margin="0" Text="1"/>
+                        <Button x:Name="btnP1s1" MinWidth="20" MinHeight="20" Margin="13,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP1s2" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP1s3" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP1s4" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP1s5" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP1s6" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP1s7" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP1s8" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP1s9" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP1s10" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP1s11" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP1s12" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP1s13" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP1s14" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP1s15" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP1s16" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Center">
+                        <TextBlock Style="{StaticResource BaseText}" Margin="0" Text="2"/>
+                        <Button x:Name="btnP2s1" MinWidth="20" MinHeight="20" Margin="13,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP2s2" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP2s3" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP2s4" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP2s5" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP2s6" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP2s7" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP2s8" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP2s9" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP2s10" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP2s11" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP2s12" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP2s13" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP2s14" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP2s15" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP2s16" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Center">
+                        <TextBlock Style="{StaticResource BaseText}" Margin="0" Text="3"/>
+                        <Button x:Name="btnP3s1" MinWidth="20" MinHeight="20" Margin="13,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP3s2" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP3s3" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP3s4" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP3s5" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP3s6" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP3s7" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP3s8" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP3s9" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP3s10" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP3s11" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP3s12" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP3s13" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP3s14" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP3s15" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP3s16" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Center">
+                        <TextBlock Style="{StaticResource BaseText}" Margin="0" Text="4"/>
+                        <Button x:Name="btnP4s1" MinWidth="20" MinHeight="20" Margin="13,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP4s2" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP4s3" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP4s4" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP4s5" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP4s6" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP4s7" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP4s8" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP4s9" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP4s10" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP4s11" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP4s12" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP4s13" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP4s14" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP4s15" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP4s16" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Center">
+                        <TextBlock Style="{StaticResource BaseText}" Margin="0" Text="5"/>
+                        <Button x:Name="btnP5s1" MinWidth="20" MinHeight="20" Margin="13,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP5s2" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP5s3" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP5s4" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP5s5" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP5s6" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP5s7" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP5s8" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP5s9" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP5s10" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP5s11" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP5s12" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP5s13" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP5s14" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP5s15" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP5s16" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Center">
+                        <TextBlock Style="{StaticResource BaseText}" Margin="0" Text="6"/>
+                        <Button x:Name="btnP6s1" MinWidth="20" MinHeight="20" Margin="13,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP6s2" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP6s3" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP6s4" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP6s5" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP6s6" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP6s7" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP6s8" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP6s9" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP6s10" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP6s11" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP6s12" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP6s13" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP6s14" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP6s15" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP6s16" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Center">
+                        <TextBlock Style="{StaticResource BaseText}" Margin="0" Text="7"/>
+                        <Button x:Name="btnP7s1" MinWidth="20" MinHeight="20" Margin="13,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP7s2" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP7s3" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP7s4" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP7s5" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP7s6" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP7s7" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP7s8" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP7s9" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP7s10" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP7s11" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP7s12" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP7s13" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP7s14" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP7s15" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP7s16" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                    </StackPanel>
+                    <TextBlock MaxHeight="3"></TextBlock>
+                    <TextBlock 
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Style="{StaticResource BaseText}"
+                        Text="Партер"></TextBlock>
+                    <TextBlock MaxHeight="3"></TextBlock>
+                    <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Center">
+                        <TextBlock Style="{StaticResource BaseText}" Margin="0" Text="8"/>
+                        <Button x:Name="btnP8s1" MinWidth="20" MinHeight="20" Margin="13,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP8s2" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP8s3" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP8s4" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP8s5" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP8s6" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP8s7" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP8s8" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP8s9" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP8s10" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP8s11" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP8s12" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP8s13" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP8s14" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP8s15" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP8s16" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Center">
+                        <TextBlock Style="{StaticResource BaseText}" Margin="0" Text="9"/>
+                        <Button x:Name="btnP9s1" MinWidth="20" MinHeight="20" Margin="13,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP9s2" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP9s3" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP9s4" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP9s5" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP9s6" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP9s7" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP9s8" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP9s9" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP9s10" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP9s11" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP9s12" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP9s13" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP9s14" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP9s15" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP9s16" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Center">
+                        <TextBlock Style="{StaticResource BaseText}" Margin="0" Text="10"/>
+                        <Button x:Name="btnP10s1" MinWidth="20" MinHeight="20" Margin="5,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP10s2" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP10s3" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP10s4" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP10s5" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP10s6" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP10s7" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP10s8" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP10s9" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP10s10" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP10s11" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP10s12" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP10s13" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP10s14" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP10s15" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP10s16" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Center">
+                        <TextBlock Style="{StaticResource BaseText}" Margin="0" Text="11"/>
+                        <Button x:Name="btnP11s1" MinWidth="20" MinHeight="20" Margin="5,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP11s2" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP11s3" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP11s4" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP11s5" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP11s6" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP11s7" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP11s8" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP11s9" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP11s10" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP11s11" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP11s12" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP11s13" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP11s14" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP11s15" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnP11s16" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                    </StackPanel>
+                    <TextBlock></TextBlock>
+                    <TextBlock 
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Style="{StaticResource BaseText}"
+                        Text="Балкон "></TextBlock>
+                    <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Center">
+                        <TextBlock Style="{StaticResource BaseText}" MinWidth="20" MinHeight="20" Margin="30,0,10,0" Text="1"/>
+                        <TextBlock Style="{StaticResource BaseText}" MinWidth="20" MinHeight="20" Margin="0,0,10,0" Text="2"/>
+                        <TextBlock Style="{StaticResource BaseText}" MinWidth="20" MinHeight="20" Margin="0,0,10,0" Text="3"/>
+                        <TextBlock Style="{StaticResource BaseText}" MinWidth="20" MinHeight="20" Margin="0,0,10,0" Text="4"/>
+                        <TextBlock Style="{StaticResource BaseText}" MinWidth="20" MinHeight="20" Margin="0,0,10,0" Text="5"/>
+                        <TextBlock Style="{StaticResource BaseText}" MinWidth="20" MinHeight="20" Margin="0,0,10,0" Text="6"/>
+                        <TextBlock Style="{StaticResource BaseText}" MinWidth="20" MinHeight="20" Margin="0,0,10,0" Text="7"/>
+                        <TextBlock Style="{StaticResource BaseText}" MinWidth="20" MinHeight="20" Margin="0,0,10,0" Text="8"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Center">
+                        <TextBlock Style="{StaticResource BaseText}" Margin="0" Text="1"/>
+                        <Button x:Name="btnB1s1" MinWidth="20" MinHeight="20" Margin="13,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnB1s2" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnB1s3" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnB1s4" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnB1s5" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnB1s6" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnB1s7" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                        <Button x:Name="btnB1s8" MinWidth="20" MinHeight="20" Margin="0,0,10,5" Click="btnSeat_Click"/>
+                    </StackPanel>
+
+                </StackPanel>
+            </Grid>
+
+            <UniformGrid Columns="2">
+                <Button
+                    x:Name="btnPay"
+                    Width="150"
+                    Margin="45,50"
+                    HorizontalAlignment="Center"
+                    Content="Оплатить"
+                    Style="{StaticResource BaseButton}" Click="btnPay_Click" />
+                <Button
+                    x:Name="btnReserve"
+                    Width="150"
+                    Margin="45,50"
+                    HorizontalAlignment="Center"
+                    Content="Бронировать"
+                    Style="{StaticResource BaseButton}" Click="btnReserve_Click" />
+            </UniformGrid>
+        </StackPanel>
+    </Grid>
+</Window>

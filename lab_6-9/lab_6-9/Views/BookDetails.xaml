@@ -1,0 +1,282 @@
+﻿<Window x:Class="lab_6_9.Views.BookDetails"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:lab_6_9.Views"
+        xmlns:uc="clr-namespace:lab_6_9.lab_9_Controls"
+        xmlns:ccl="clr-namespace:lab_8_WpfCustomControlLibrary;assembly=lab_8_WpfCustomControlLibrary"
+        xmlns:commands="clr-namespace:lab_6_9" 
+        mc:Ignorable="d"
+        Title="BookDetails" WindowStartupLocation="CenterScreen" 
+        Height="710" Width="950"
+        Icon = "/Images/Icons/EBook.png">
+    <Window.Resources>
+        <Cursor x:Key="quillCursor">/Settings/quill.cur</Cursor>
+    </Window.Resources>
+    <!--<Window.CommandBindings>
+       <CommandBinding Command="commands:WindowCommands.CloseBookDetails" Executed="CloseBookDetails_Executed"/>
+    </Window.CommandBindings>-->
+    <StackPanel Cursor="{StaticResource quillCursor}">
+        <Image Width="200" Height="200" x:Name="image" DataContext="ElectronicBooks" ></Image>
+        
+            <TextBlock x:Name="priceBox"
+                       Margin="10"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Style="{StaticResource BaseText}"
+                       FontSize="40"
+                       TextWrapping="Wrap"
+                       Text="" />
+        
+       
+        <Grid Background="{StaticResource LightBrush}">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" Name="root" Margin="10,0,10.2,10.4">
+
+
+                <Grid>
+                    <Border CornerRadius="5">
+                        <Border.OpacityMask>
+                            <VisualBrush>
+                                <VisualBrush.Visual>
+                                    <Border
+                                        Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Border}}"
+                                        Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Border}}"
+                                        Background="Black"
+                                        CornerRadius="{Binding CornerRadius, RelativeSource={RelativeSource AncestorType=Border}}"
+                                        SnapsToDevicePixels="True" />
+                                </VisualBrush.Visual>
+                            </VisualBrush>
+                        </Border.OpacityMask>
+
+                        <StackPanel HorizontalAlignment="Center">
+                            <StackPanel Orientation="Horizontal">
+
+                            </StackPanel>
+
+                            <UniformGrid Background="{StaticResource DarkBrush}" Columns="2">
+                                <TextBlock
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseText}"
+                                    Text="{DynamicResource nameBlock}" />
+
+                                <TextBlock x:Name="pNameBox"
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseText}"
+                                    TextWrapping="Wrap"
+                                    Text=""  />
+                            </UniformGrid>
+
+                            <UniformGrid Background="{StaticResource MediumBrush}" Columns="2">
+                                <TextBlock
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseText}"
+                                    Text="{DynamicResource manufBlock}" />
+
+                                <TextBlock x:Name="manufBox"
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseText}"
+                                    TextWrapping="Wrap"
+                                    Text=""  />
+                            </UniformGrid>
+                            <UniformGrid Background="{StaticResource DarkBrush}" Columns="2">
+                                <TextBlock
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseText}"
+                                    Text="{DynamicResource screenTechBlock}" />
+
+                                <TextBlock x:Name="screenTechBox"
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseText}"
+                                    TextWrapping="Wrap"
+                                    Text=""  />
+                            </UniformGrid>
+                            <UniformGrid Background="{StaticResource MediumBrush}" Columns="2">
+                                <TextBlock
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseText}"
+                                    Text="{DynamicResource screenResolBlock}" />
+
+                                <TextBlock x:Name="screenResolBox"
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseText}"
+                                    TextWrapping="Wrap"
+                                    Text=""  />
+                            </UniformGrid>
+                            <UniformGrid Background="{StaticResource DarkBrush}" Columns="2">
+                                <TextBlock
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseText}"
+                                    Text="{DynamicResource materBlock}" />
+
+                                <TextBlock x:Name="materBox"
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseText}"
+                                    TextWrapping="Wrap"
+                                    Text=""  />
+                            </UniformGrid>
+                            <UniformGrid Background="{StaticResource MediumBrush}" Columns="2">
+                                <TextBlock
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseText}"
+                                    Text="{DynamicResource colorBlock}" />
+
+                                <TextBlock x:Name="colorBox"
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseText}"
+                                    TextWrapping="Wrap"
+                                    Text=""  />
+                            </UniformGrid>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" Grid.Column="1" Name="root2" Margin="9.8,0,9.6,10.4" Grid.ColumnSpan="2">
+
+                <Grid>
+                    <Border CornerRadius="5">
+                        <Border.OpacityMask>
+                            <VisualBrush>
+                                <VisualBrush.Visual>
+                                    <Border
+                                        Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Border}}"
+                                        Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Border}}"
+                                        Background="Black"
+                                        CornerRadius="{Binding CornerRadius, RelativeSource={RelativeSource AncestorType=Border}}"
+                                        SnapsToDevicePixels="True" />
+                                </VisualBrush.Visual>
+                            </VisualBrush>
+                        </Border.OpacityMask>
+
+                        <StackPanel HorizontalAlignment="Center">
+                            <StackPanel Orientation="Horizontal">
+
+                            </StackPanel>
+
+                            <UniformGrid Background="{StaticResource DarkBrush}" Columns="2">
+                                <TextBlock
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseText}"
+                                    Text="{DynamicResource screenSizeBlock}" />
+
+                                <TextBlock x:Name="screenSizeBox"
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseText}"
+                                    TextWrapping="Wrap"
+                                    Text="" />
+                            </UniformGrid>
+                            <UniformGrid Background="{StaticResource MediumBrush}" Columns="2">
+                                <TextBlock
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseText}"
+                                    Text="{DynamicResource ratingBlock}" />
+
+                                <TextBlock x:Name="rateBox"
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseText}"
+                                    TextWrapping="Wrap"
+                                    Text="" />
+                            </UniformGrid>
+                            <UniformGrid Background="{StaticResource DarkBrush}" Columns="2">
+                                <TextBlock
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseText}"
+                                    Text="{DynamicResource backlightBlock}" />
+
+                                <TextBlock x:Name="backlightBox"
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseText}"
+                                    TextWrapping="Wrap"
+                                    Text="" />
+                            </UniformGrid>
+                            <UniformGrid Background="{StaticResource MediumBrush}" Columns="2">
+                                <TextBlock
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseText}"
+                                    Text="{DynamicResource ramBlock}" />
+
+                                <TextBlock x:Name="ramBox"
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseText}"
+                                    TextWrapping="Wrap"
+                                    Text="" />
+                            </UniformGrid>
+                            <!--Поддержка текстовых форматов: -->
+
+                            <UniformGrid Background="{StaticResource DarkBrush}" Columns="2">
+                                <TextBlock
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseText}"
+                                    Text="{DynamicResource txtFormatsBlock}" />
+
+                                <TextBlock x:Name="txtFormatsBox"
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseText}"
+                                    TextWrapping="Wrap"
+                                    Text=""  />
+                            </UniformGrid>
+
+                            <UniformGrid Background="{StaticResource MediumBrush}" Columns="2">
+                                <TextBlock
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseText}"
+                                    Text="{DynamicResource weightBlock}" />
+
+                                <TextBlock x:Name="weightBox"
+                                    Margin="10"
+                                    VerticalAlignment="Center"
+                                    Style="{StaticResource BaseText}"
+                                    TextWrapping="Wrap"
+                                    Text=""  />
+                            </UniformGrid>
+
+                        </StackPanel>
+                    </Border>
+
+                </Grid>
+            </StackPanel>
+        </Grid>
+        <uc:UserControlButton x:Name="closeButton"
+                              Margin="20"
+                    HorizontalAlignment="Center"
+                              CloseButtonClick="closeButton_Click"></uc:UserControlButton>
+        <!--<Button x:Name="closeButton"
+                Command="commands:WindowCommands.CloseBookDetails"
+                    MinWidth="150"
+                    Margin="20"
+                    HorizontalAlignment="Center"
+                    Content="{DynamicResource closeButtonBookDtls}"
+                    Style="{StaticResource BaseButton}"/>-->
+        <ccl:CustomControlFields></ccl:CustomControlFields>
+    </StackPanel>
+</Window>

@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playgoer", "Playgoer.csproj", "{96D64669-B596-4242-9FDE-814769DC4B95}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{96D64669-B596-4242-9FDE-814769DC4B95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96D64669-B596-4242-9FDE-814769DC4B95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96D64669-B596-4242-9FDE-814769DC4B95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96D64669-B596-4242-9FDE-814769DC4B95}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {49915724-544D-4038-A273-7F14DF4AF731}
+	EndGlobalSection
+EndGlobal
